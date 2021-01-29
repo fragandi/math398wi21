@@ -11,6 +11,15 @@ f2 = z^2
 f3= x*y
 G = ideal(f1,f2)
 
+dim R
+L = {}
+for i from 0 to (dim(R)-1) do (append(L,(vars(R))_(0,i)) )
+L
+-- mmmh this should be fixed to give a list variables!
+-- then I want to do for each variable gcd(variable,input monomial)
+-- this should give me the variables in the monomial
+-- help with this!
+
 
 --leading data
 leadMonomial f
