@@ -2,6 +2,7 @@
 -- In this window you may type in Macaulay2 commands 
 -- and have them evaluated by the server.
 
+
 -- Evaluate a line or selection by typing Shift+Enter 
 -- or by clicking on Evaluate.
 
