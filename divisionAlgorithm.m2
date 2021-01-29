@@ -20,3 +20,22 @@ while p !=0 do (
 --Finally, return (q1,…,qs) and r.
     
 )
+R = QQ[x,y,z, MonomialOrder => GLex]
+f = x^3-x^2*y-x^2*z+x
+f1 = x^2*y-z
+f2 = x*y-1
+G = ideal(f2, f1)
+describe G
+f%G
+f % (forceGB gens G)   
+f % (forceGB matrix{{f1,f2}})
+f % (forceGB matrix{{f2,f1}})
+gcd(f, G)
+r = x-z
+gcd(f, f1, f2)
+r% (forceGB matrix{{f1,f2}})
+f3 = x^4*f2 + f1
+gcd(f3, f1, f2)
+f3% (forceGB matrix{{f1,f2}})
+reset
+restart
