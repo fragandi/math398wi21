@@ -8,18 +8,14 @@ f3= x*y
 G = ideal(f1,f2)
 
 dim R
-L  = ""
+L  = {}
 M = vars R
-M_(0,0)
-peek M
-describe M_(0,0)
-for i from 0 to (dim(R)-1) do (concatenate(L,( M_{0,i}));
-L
-
--- mmmh this should be fixed to give a list variables!
+for i from 0 to (dim(R)-1) do (L = L|toList(M_(0,i)));
+peek L
+describe L(0)
 -- then I want to do for each variable gcd(variable,input monomial)
 -- this should give me the variables in the monomial
--- help with this!
+for i from 0 to dim(L)-1 do(gcd(L#i, read); 
 
 
 --leading data
