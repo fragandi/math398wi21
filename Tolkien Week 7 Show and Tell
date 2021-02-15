@@ -4,3 +4,4 @@ g = ideal groebnerBasis I
 gens g
 f = -4*x^2*y^2*z^2+y^6+3*z^5
 f % g
+quotientRemainder
