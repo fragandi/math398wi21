@@ -3,4 +3,5 @@ I = ideal(x*z - y^2, x^3 - z^2)
 g = ideal groebnerBasis I
 gens g
 f = -4*x^2*y^2*z^2+y^6+3*z^5
-quotientRemainder(g, f)
+f % g
+quotientRemainder
