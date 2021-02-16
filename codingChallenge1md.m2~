@@ -1,0 +1,51 @@
+R = QQ[x,y,z,w]
+
+o19 = R
+
+o19 : PolynomialRing
+
+i20 : h = method()
+
+o20 = h
+
+o20 : MethodFunction
+
+i21 : h(R,R) := (f,g) -> gcd(f,g)
+
+o21 = -*Function[stdio:28:17-28:26]*-
+
+o21 : FunctionClosure
+
+i22 : m = vars R
+
+o22 = | x y z w |
+
+              1       4
+	      o22 : Matrix R  <--- R
+	      
+	      i23 : v = entries m
+	      
+	      o23 = {{x, y, z, w}}
+	      
+	      o23 : List
+	      
+	      i24 : L = v#0
+	      
+	      o24 = {x, y, z, w}
+	      
+	      o24 : List
+	      
+	      i25 : M = {x*w, x^2, x*y*w, z^3}
+	      
+	                   2          3
+			   o25 = {x*w, x , x*y*w, z }
+			   
+			   o25 : List
+			   
+			   i26 : for i from 0 to ((dim R) - 1) do (if not h(M#0, L#i) == 1 then print h(M#0,
+				   , L#i))
+			   x
+			   w
+			   
+			   i27 : -- want to make a for loop that goes through all the monomials in list M
+			   

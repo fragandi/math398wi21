@@ -9,13 +9,19 @@ G = ideal(f1,f2)
 
 dim R
 L  = {}
+N = ""
 M = vars R
 for i from 0 to (dim(R)-1) do (L = L|toList(M_(0,i)));
+for i from 0 to (dim(R)-1) do (N = N|toString(L#i));
 peek L
-describe L(0)
+peek N
+class L#0
 -- then I want to do for each variable gcd(variable,input monomial)
 -- this should give me the variables in the monomial
-for i from 0 to dim(L)-1 do(gcd(L#i, read); 
+for i from 0 to #L-1 do(var = gcd(f, L#i)); 
+peek var
+
+G = ideal(L#0)
 
 
 --leading data
@@ -65,3 +71,9 @@ f % J1
 
 -- Note: for M2 order does not matter
 -- because M2 is using a GB (automatically)
+x = 1
+for i from 0 to 5 do(
+    for j from 1 do 5(
+	x = x|i;
+	)
+    )

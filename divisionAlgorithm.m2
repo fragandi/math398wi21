@@ -39,3 +39,10 @@ gcd(f3, f1, f2)
 f3% (forceGB matrix{{f1,f2}})
 reset
 restart
+S = QQ[x,y,z, MonomialOrder => Lex]
+g1 =x*y^2 - x*z + y 
+g2 = x*y - z^2
+g3 = x - y*z^4
+g = x*g2 - z*g2
+G = ideal(g1, g2, g3)
+g % (forceGB matrix{{g1,g2,g3}})
