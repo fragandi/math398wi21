@@ -1,13 +1,12 @@
 
 
 
---parabola example in the book
 --select a monomial ordering that helps
 --eliminate one variable
 R=QQ[t,x,y,MonomialOrder=>Eliminate 1]
 
 --define our function
-F=(x-t)^2-y+t
+F=(x-t)^2+(y-t^2)^2-4
 
 --take its derivative (see Def 3.4.5)
 dF = diff(t,F)
@@ -32,10 +31,6 @@ print envelope
 --all other t terms have lesser degree, 
 --the extension theorem applies.
 print "to extend the solutions back to t:"
-print G_(0,1)
 
---By setting g_7=0, we can simplify to get 2(t^2-y)t = x
---if x = 0, we have three solutions, t=0, t=+sqrt(y), and t=-sqrt(y)
---if x != 0, we have a messy equation that I was going to solve
---graphically, but then something cool happened
-
+--prints the last element of G
+print G_(0, numgens source G -1)
