@@ -22,6 +22,7 @@ J = eliminate(I,t)
 --the first equation will not depend on t
 --it is our envelope
 envelope = J_0
+print "the envelope is:" 
 print envelope
 
 --Part b requests us to use the extension 
@@ -30,6 +31,7 @@ print envelope
 --Since the leading term of g_7 is 2t^3 and 
 --all other t terms have lesser degree, 
 --the extension theorem applies.
+print "to extend the solutions back to t:"
 print G_(0,1)
 
 --By setting g_7=0, we can simplify to get 2(t^2-y)t = x
