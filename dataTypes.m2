@@ -1,11 +1,11 @@
-
+--Primitive data types
 --variable names are stored as symbols 
 X
 X = 2
 class X
 symbol X
 
---the basic data types are similar to other programming languages (like Java)
+--Primitive data types are similar to other programming languages (like Java)
 --integers are stored as rings of type ZZ(the ring of integers)
 2
 class 2
@@ -14,7 +14,9 @@ class 2
 stringEx = "abcdefg"
 class "abcdefg"
 
---"type" is like a class in Java, sort of
+--"type" is like a class in Java, sort of.
+--All Macaulay2 code has a type, unlike Java, where ints and doubles are primitive types
+--rather than objects
 
 --strings also have escape characters, like strings in other languages
 "Math 398 \n Winter 2021"
@@ -26,10 +28,11 @@ stringEx|"hijk" --stringEx + "hijk"
 
 --creating "blocks" in code can be a little tricky
     --as we've seen, but parentheses are most useful
---ints[];
---for(int i = 0; i<=5; i++){
-    --ints += i;
---}
+--for loops
+    --String ints;
+    --for(int i = 0; i<=5; i++){
+        --ints += i;
+   --}
 ints  = "";
 for i from 0 to 5 do (
     ints = ints|"a"

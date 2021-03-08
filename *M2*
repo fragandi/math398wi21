@@ -1,0 +1,78 @@
+
++ M2 --no-readline --print-width 171
+Macaulay2, version 1.17
+with packages: ConwayPolynomials, Elimination, IntegralClosure, InverseSystems, LLLBases, MinimalPrimes, PrimaryDecomposition, ReesAlgebra, Saturation, TangentCone
+sh: 1: Syntax error: "(" unexpected
+sh: 1: Syntax error: "(" unexpected
+sh: 1: Syntax error: "(" unexpected
+
+i1 : X
+
+o1 = X
+
+o1 : Symbol
+
+i2 : X = 2
+
+o2 = 2
+
+i3 : class X
+
+o3 = ZZ
+
+o3 : Ring
+
+i4 : symbol X
+
+o4 = X
+
+o4 : Symbol
+
+i5 : 2
+
+o5 = 2
+
+i6 : class 2
+
+o6 = ZZ
+
+o6 : Ring
+
+i7 : stringEx = "abcdefg"
+
+o7 = abcdefg
+
+i8 : class "abcdefg"
+
+o8 = String
+
+o8 : Type
+
+i9 : "Math 398 \n Winter 2021"
+
+o9 = Math 398 
+      Winter 2021
+
+i10 : peek stringEx --think System.out.println
+
+o10 = "abcdefg"
+
+i11 : #stringEx --stringEx.length()
+
+o11 = 7
+
+i12 : stringEx|"hijk" --stringEx + "hijk"
+
+o12 = abcdefghijk
+
+i13 : ints  = "";
+
+i14 : for i from 0 to 5 do (
+          ints = ints|"a"
+          )
+
+i15 : peek ints
+
+o15 = "aaaaaa"
+
+i16 : 
