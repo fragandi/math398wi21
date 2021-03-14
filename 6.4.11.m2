@@ -34,7 +34,6 @@ G2 = gb V2
 for i in (entries gens G2)_0 do (
     print factor i;
 )
-print " "
 
 -- V1 = V3 U V4
 V3 = ideal(u1, (2*x3*u3 - 2*x4*u2 - u1*u3), (x2 - u3), x1-u1-u2)
@@ -44,7 +43,7 @@ G3 = gb V3
 for i in (entries gens G3)_0 do (
     print factor i;
 )
-
+-- ^^^ this is U3
 
 V4 = ideal(2*x4 - u3, (2*x3*u3 - 2*x4*u2 - u1*u3), (x2 - u3), x1-u1-u2)
 print V4
@@ -53,6 +52,7 @@ G4 = gb V4
 for i in (entries gens G4)_0 do (
     print factor i;
 )
+-- this is very close to being V', not sure why the u3 is still here
 
 -- V2 = V5 U V6
 V5 = ideal(u3, u1 - u2, x2, x1*x4)
@@ -62,4 +62,16 @@ G5 = gb V5
 for i in (entries gens G5)_0 do (
     print factor i;
 )
+-- this is very close to being U2
+
+-- V2 = V5 U V6
+V6 = ideal(u3, x4, x2, x1*x4)
+print V6
+G6 = gb V6
+
+for i in (entries gens G6)_0 do (
+    print factor i;
+)
+-- this is U1
+
 
