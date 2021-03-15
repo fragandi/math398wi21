@@ -1,4 +1,3 @@
--- do I want to use lex?
 R = QQ[x1,x2,x3,x4,u1,u2,u3, MonomialOrder => Lex]
 
 f1 = x1*x4 + x4*u1 - x4*u2 - u1*u3
@@ -52,7 +51,7 @@ G4 = gb V4
 for i in (entries gens G4)_0 do (
     print factor i;
 )
--- this is very close to being V', not sure why the u3 is still here
+-- this is very close to being V', not sure how the u3 got here
 
 -- V2 = V5 U V6
 V5 = ideal(u3, u1 - u2, x2, x1*x4)
@@ -92,4 +91,23 @@ G8 = gb V8
 for i in (entries gens G8)_0 do (
     print factor i;
 )
--- not really sure what this is
+-- this is U1 U u1 - u2
+
+-- V4 = V9 U V10
+V9 = ideal( (2*x4 - u3),(2*x3 - u1 - u2),(x2 - u3),(x1 - u1 - u2))
+print V9
+G9 = gb V9
+
+for i in (entries gens G9)_0 do (
+    print factor i;
+)
+--this is V'
+
+V10 = ideal( (2*x4 - u3),u3,(x2 - u3),(x1 - u1 - u2))
+print V10
+G10 = gb V10
+
+for i in (entries gens G10)_0 do (
+    print factor i;
+)
+-- this is U1 U x1-u1-u2
