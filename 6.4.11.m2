@@ -158,6 +158,8 @@ print (V == intersect(V', U1, U2,U3))
 -- we know that the variety of U3 is a subset of V, so the ideal of V is a subset of U3
 print isSubset(V, U3)
 
--- we want to show that none of the irreducible components are contained within 
--- the union of the other irreducible components
---print isSubset(intersect(V', U1, U2),U3)
+-- we want to show that none of the irreducible components of the variety are contained within 
+-- the union of the other irreducible components, so we intersect the three other ideals and check whether 
+-- they are contained within the last ideal
+-- note: we use "or"s to detect if at least one ideal is contained in the union of the others
+print (isSubset(intersect(V', U1, U2),U3) or isSubset(intersect(V', U1, U3),U2) or isSubset(intersect(V', U3, U2),U1) or isSubset(intersect(U3, U1, U2),V'))
