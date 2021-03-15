@@ -180,7 +180,7 @@ print isSubset(V, U3)
 
 -- we want to show that none of the irreducible components of the variety are contained within 
 -- the union of the other irreducible components, so we intersect the three other ideals and check whether 
--- they are contained within the last ideal
+-- they are contained within the fourth ideal
 -- note: we use "or"s to detect if at least one ideal is contained in the union of the others
 print (isSubset(intersect(V', U1, U2),U3) or isSubset(intersect(V', U1, U3),U2) or isSubset(intersect(V', U3, U2),U1) or isSubset(intersect(U3, U1, U2),V'))
 
@@ -194,8 +194,7 @@ g2 = 2*x3*u1 - 2*x3*u2 - 2*x4*u3 - u1^2 + u2^2 + u3^2
 
 -- then, we just check if both conclusions are in V'
 
-print (g1 % V')
-print (g2 % V')
+print (((g1 % V') == 0) and ((g2 % V') == 0))
 
 
 -- if we use a different formulation for our hypotheses, we get a groebner basis that is much friendlier
@@ -248,6 +247,5 @@ for i in (entries gens H4')_0 do (
 print " "
 
 -- test our conclusions on I3'
-print (g1 % I3')
-print (g2 % I3')
+print (((g1 % I3') == 0) and ((g2 % I3') == 0))
 -- it works!
