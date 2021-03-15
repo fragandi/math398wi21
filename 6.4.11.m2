@@ -74,4 +74,22 @@ for i in (entries gens G6)_0 do (
 )
 -- this is U1
 
+-- V5 = V7 U V8
+V7 = ideal(u3, u1 - u2, x2, x1)
+print V7
+G7 = gb V7
 
+for i in (entries gens G7)_0 do (
+    print factor i;
+)
+-- this is U2
+
+-- V5 = V7 U V8
+V8 = ideal(u3, u1 - u2, x2, x4)
+print V8
+G8 = gb V8
+
+for i in (entries gens G8)_0 do (
+    print factor i;
+)
+-- not really sure what this is
