@@ -1,5 +1,20 @@
+--define our ring
 R = QQ[x1,x2,x3,x4,u1,u2,u3, MonomialOrder => Lex]
 
+-- define our hypotheses
+h1 = x2 - u3
+h2 = (x1 - u1)*u3 - u2*x2
+h3 = x4*x1 - x3*x2
+h4 = x4*(u2-u1) - (x3-u1)*u3
+
+I = ideal(h1,h2,h3,h4)
+H = gb I
+
+for i in (entries gens H)_0 do (
+    print factor i;
+)
+
+-- the groebner basis of H yields these equations
 f1 = x1*x4 + x4*u1 - x4*u2 - u1*u3
 f2 = x1*u3 - u1*u3 - u2*u3
 f3 = x2-u3
@@ -8,6 +23,10 @@ f5 = x4*u1^2 - x4*u1*u2 - u1^2*u3/2 + u1*u2*u3/2
 f6 = x4*u1*u3 - (u1*u3^2)/2
 
 V = ideal(f1,f2,f3,f4,f5,f6)
+
+-- we can check that this is the groebner basis by doing V == I
+print (V == I)
+
 print V
 G = gb V
 print gens G
@@ -17,7 +36,8 @@ for i in (entries gens G)_0 do (
 print " "
 
 
-
+-- notice that some of these generators were factorable
+-- this means we can decompose the ideal further
 
 
 
@@ -163,3 +183,71 @@ print isSubset(V, U3)
 -- they are contained within the last ideal
 -- note: we use "or"s to detect if at least one ideal is contained in the union of the others
 print (isSubset(intersect(V', U1, U2),U3) or isSubset(intersect(V', U1, U3),U2) or isSubset(intersect(V', U3, U2),U1) or isSubset(intersect(U3, U1, U2),V'))
+
+
+-- we notice that the functions u1, u2, and u3 are not algebraically independant on U1, U2, and U3
+-- however, they are algebraically independant on V', so we can use V' to make conclusions from our hypotheses
+-- our conclusion is "the intersection of the diagonals of a parallelogram bisects both diagonals"
+-- we can write this in polynomials with the following equations
+g1 = x1^2 - 2*x1*x3 - 2*x4*x2 + x2^2
+g2 = 2*x3*u1 - 2*x3*u2 - 2*x4*u3 - u1^2 + u2^2 + u3^2
+
+-- then, we just check if both conclusions are in V'
+
+print (g1 % V')
+print (g2 % V')
+
+
+-- if we use a different formulation for our hypotheses, we get a groebner basis that is much friendlier
+h1' = x1 - u1 - u2
+h2' = x2-u3
+
+
+I' = ideal(h1',h2',h3,h4)
+H' = gb I'
+
+for i in (entries gens H')_0 do (
+    print factor i;
+)
+
+print " "
+-- notice that only one equation is factorable
+
+I1' = ideal( (2*x4 - u3), (2*x3*u3 - 2*x4*u2 - u1*u3), (x2 - u3), (x1 - u1 - u2))
+H1' = gb I1'
+
+for i in (entries gens H1')_0 do (
+    print factor i;
+)
+
+print " "
+I2' = ideal( u1, (2*x3*u3 - 2*x4*u2 - u1*u3), (x2 - u3), (x1 - u1 - u2))
+
+H2' = gb I2'
+
+for i in (entries gens H2')_0 do (
+    print factor i;
+)
+
+print " "
+I3' = ideal((2*x4 - u3), (2*x3 - u1 - u2), (x2 - u3), (x1 - u1 - u2))
+
+H3' = gb I3'
+
+for i in (entries gens H3')_0 do (
+    print factor i;
+)
+-- we notice that I3' is irreducible and that the ui's are algebraically independant over it
+print " "
+I4' = ideal((2*x4 - u3), (u3), (x2 - u3), (x1 - u1 - u2))
+H4' = gb I4'
+
+for i in (entries gens H4')_0 do (
+    print factor i;
+)
+print " "
+
+-- test our conclusions on I3'
+print (g1 % I3')
+print (g2 % I3')
+-- it works!
