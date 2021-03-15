@@ -85,7 +85,8 @@ print M
 
 -- now, we successively pseudodivide our conclusions and check that the final remainder R0 is zero
 g1 = x1^2 - 2*x1*x3 - 2*x4*x2 + x2^2
-g2 = 2*x3*u1 - 2*x3*u2 - 2*x4*u3 - u1^2 + u2^2 + u3^2
+--g2 = 2*x3*u1 - 2*x3*u2 - 2*x4*u3 - u1^2 + u2^2 + u3^2
+g2 = 2*x4-x2
 R4 = g1
 R3 = pseudodivide(R4,f'4,x4)
 R2 = pseudodivide(R3,f'3,x3)
