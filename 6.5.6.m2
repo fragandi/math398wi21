@@ -13,11 +13,11 @@ I = ideal(h1,h2,h3,h4)
 H = gb I
 
 LC = (g,y) -> (
+    m := degree(y,g);
 
-    m = degree(y,g);
-    M := monomials(g);
-    d = g;
-    temp = g; 
+    d := g;
+    temp := g; 
+
     while temp != 0 do (
         if (degree(y,leadTerm(temp)) != m) then (
             d = d - leadTerm(temp);
@@ -28,27 +28,14 @@ LC = (g,y) -> (
     lift(d/y^m,R)
 )
 
-print "HERE IT IS";
 pseudodivide = (f,g,y) -> (
-    m = degree(y,g);
-    M := monomials(g, Variables=>{y});
-
-    d = LC(g,y);
-print "d = ";
-print d;
-print "g = ";
-print g;
-    r = f;
-    q = 0;
-i = 0;
+    m := degree(y,g);
+    d := LC(g,y);
+    r := f;
+    q := 0;
     while ((not (r == 0)) and degree(y,r) >= m) do (
         q = d*q + LC(r,y) * y^(degree(y,r)-m);
         r = d*r - LC(r,y) * g * y^(degree(y,r)-m);
-print q;
-print r;
-print " ";
-i = i + 1;
-if (i > 10) then break;
     );
 
     r
