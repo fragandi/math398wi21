@@ -16,6 +16,11 @@ for i in (entries gens G)_0 do (
 )
 print " "
 
+
+
+
+
+
 -- V = V1 U V2
 V1 = ideal(f1,x1-u1-u2,f3,f4,f5,f6)
 print V1
@@ -34,6 +39,12 @@ for i in (entries gens G2)_0 do (
     print factor i;
 )
 
+
+
+
+
+
+
 -- V1 = V3 U V4
 V3 = ideal(u1, (2*x3*u3 - 2*x4*u2 - u1*u3), (x2 - u3), x1-u1-u2)
 print V3
@@ -43,6 +54,7 @@ for i in (entries gens G3)_0 do (
     print factor i;
 )
 -- ^^^ this is U3
+U3 = V3
 
 V4 = ideal(2*x4 - u3, (2*x3*u3 - 2*x4*u2 - u1*u3), (x2 - u3), x1-u1-u2)
 print V4
@@ -52,6 +64,12 @@ for i in (entries gens G4)_0 do (
     print factor i;
 )
 -- this is very close to being V', not sure how the u3 got here
+
+
+
+
+
+
 
 -- V2 = V5 U V6
 V5 = ideal(u3, u1 - u2, x2, x1*x4)
@@ -72,6 +90,14 @@ for i in (entries gens G6)_0 do (
     print factor i;
 )
 -- this is U1
+U1 = V6
+
+
+
+
+
+
+
 
 -- V5 = V7 U V8
 V7 = ideal(u3, u1 - u2, x2, x1)
@@ -82,6 +108,7 @@ for i in (entries gens G7)_0 do (
     print factor i;
 )
 -- this is U2
+U2 = V7
 
 -- V5 = V7 U V8
 V8 = ideal(u3, u1 - u2, x2, x4)
@@ -93,6 +120,12 @@ for i in (entries gens G8)_0 do (
 )
 -- this is U1 U u1 - u2
 
+
+
+
+
+
+
 -- V4 = V9 U V10
 V9 = ideal( (2*x4 - u3),(2*x3 - u1 - u2),(x2 - u3),(x1 - u1 - u2))
 print V9
@@ -102,6 +135,7 @@ for i in (entries gens G9)_0 do (
     print factor i;
 )
 --this is V'
+V' = V9
 
 V10 = ideal( (2*x4 - u3),u3,(x2 - u3),(x1 - u1 - u2))
 print V10
@@ -111,3 +145,19 @@ for i in (entries gens G10)_0 do (
     print factor i;
 )
 -- this is U1 U x1-u1-u2
+
+
+
+
+-- intersection of ideals is a union of varieties
+-- here we ensure that our irreducible ideals make up all of V
+print (V == intersect(V', U1, U2,U3))
+
+
+-- test to figure out how isSubset works
+-- we know that the variety of U3 is a subset of V, so the ideal of V is a subset of U3
+print isSubset(V, U3)
+
+-- we want to show that none of the irreducible components are contained within 
+-- the union of the other irreducible components
+--print isSubset(intersect(V', U1, U2),U3)
