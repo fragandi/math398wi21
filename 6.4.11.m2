@@ -24,8 +24,14 @@ f6 = x4*u1*u3 - (u1*u3^2)/2
 
 V = ideal(f1,f2,f3,f4,f5,f6)
 
--- we can check that this is the groebner basis by doing V == I
+-- we can check that this is the same ideal by doing V == I
 print (V == I)
+
+g1 = x1^2 - 2*x1*x3 - 2*x4*x2 + x2^2
+g2 = 2*x3*u1 - 2*x3*u2 - 2*x4*u3 - u1^2 + u2^2 + u3^2
+
+print (((g1 % V) == 0) and ((g2 % V) == 0))
+
 
 print V
 G = gb V
@@ -237,6 +243,8 @@ for i in (entries gens H3')_0 do (
     print factor i;
 )
 -- we notice that I3' is irreducible and that the ui's are algebraically independant over it
+-- this is the irreducible variety we want!
+
 print " "
 I4' = ideal((2*x4 - u3), (u3), (x2 - u3), (x1 - u1 - u2))
 H4' = gb I4'
