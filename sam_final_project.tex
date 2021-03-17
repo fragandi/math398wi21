@@ -1,0 +1,250 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Redefine margins and other page formatting
+
+
+
+%packages I need
+
+
+
+\usepackage{tikz}
+\usepackage{tikz-cd}
+
+
+\usetikzlibrary{arrows,decorations.pathmorphing,decorations.pathreplacing,positioning,shapes.geometric,shapes.misc,decorations.markings,decorations.fractals,calc,patterns}
+
+\usepackage{graphics}
+\usepackage[margin=1in]{geometry}
+\usepackage[all]{xy}
+\usepackage{amsrefs}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsxtra}     % Use various AMS packages
+
+
+\usepackage{epsfig}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Various theorem environments. All of the following have the same numbering
+% system as theorem.
+
+\theoremstyle{plain}
+\newtheorem{Theorem}{Theorem}
+\newtheorem{Proposition}[Theorem]{Proposition}
+\newtheorem{Corollary}[Theorem]{Corollary}
+\newtheorem{Lemma}[Theorem]{Lemma}
+\newtheorem{Question}[Theorem]{Question}
+\newtheorem{Conjecture}[Theorem]{Conjecture}
+\newtheorem{Assumption}[Theorem]{Assumption}
+\newtheorem{Algorithm}[Theorem]{Algorithm}
+
+\theoremstyle{definition}
+\newtheorem{Definition}[Theorem]{Definition}
+\newtheorem{Notation}[Theorem]{Notation}
+\newtheorem{Condition}[Theorem]{Condition}
+\newtheorem{Example}[Theorem]{Example}
+\newtheorem{Introduction}[Theorem]{Introduction}
+
+\theoremstyle{remark}
+\newtheorem{Remark}[Theorem]{Remark}
+\include{header}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \numberwithin{Theorem}{chapter}        % Numbers theorems "x.y" where x
+                                        % is the section number, y is the
+                                        % theorem number
+
+% \renewcommand{\thechapter}{\arabic{chapter}}
+  
+% \renewcommand{\thetheorem}{\roman{chapter}.\arabic{theorem}}
+
+%\makeatletter                          % This sequence of commands will
+%\let\c@equation\c@theorem              % incorporate equation numbering
+%\makeatother                           % into the theorem numbering scheme
+
+%\renewcommand{\theenumi}{(\roman{enumi})}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% When you first define a new word, use this macro to make it stand out
+% EG We say that an abelian group $I$ is \newword{injective} if, for any
+% injection $G \to H$, and any map $G \to I$, there is a map $H \to I$ making the
+% obvious diagram commute.
+
+\newcommand{\newword}[1]{\textbf{\emph{#1}}}
+
+%Arrows
+\newcommand{\into}{\hookrightarrow}
+\newcommand{\onto}{\twoheadrightarrow}
+
+%Things LaTeX names by appearance, rather than meaning
+% By now, I've learned the standard LaTeX names, but I remember they used to give me trouble, so here are some macros
+%You can create your own macros with newcommand
+
+\newcommand{\isom}{\cong} %The isomorphism symbol
+\newcommand{\union}{\cup}
+\newcommand{\intersection}{\cap}
+\newcommand{\bigunion}{\bigcup}
+\newcommand{\bigintersection}{\bigcap}
+\newcommand{\disjointunion}{\sqcup}
+\newcommand{\bigdisjointunion}{\bigsqcup}
+
+
+%with DeclareMathOperator you can define a new command which in math environment looks like a mathematical function
+
+%Some multiletter functions
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\CoKer}{CoKer}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\MaxSpec}{MaxSpec}
+\DeclareMathOperator{\Proj}{Proj}
+\DeclareMathOperator{\Frac}{Frac}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}}
+
+
+\DeclareMathOperator{\Obj}{Obj}
+\DeclareMathOperator{\kernel}{ker}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\spa}{span}
+\DeclareMathOperator{\init}{in}
+\DeclareMathOperator{\rk}{rk}
+
+
+%Their calligraphic versions; use these for the sheaf constructions
+\DeclareMathOperator{\HHom}{\mathcal{H}\emph{om}}
+\DeclareMathOperator{\EExt}{\mathcal{E}\emph{xt}}
+\DeclareMathOperator{\EEnd}{\mathcal{E}\emph{nd}}
+\DeclareMathOperator{\TTor}{\mathcal{T}\emph{or}}
+\DeclareMathOperator{\KKer}{\mathcal{K}\emph{er}}
+\DeclareMathOperator{\CCoKer}{\mathcal{C}\emph{o}\mathcal{K}\emph{er}}
+\newcommand{\IIm}{\mathop{\mathcal{I}\emph{m}}}
+\DeclareMathOperator{\codim}{codim}
+
+
+
+%This makes alternating tensors look right in displayed equations
+\newcommand{\Alt}{\bigwedge\nolimits}
+
+
+%Blackboard bold letters.
+\renewcommand{\AA}{\mathbb{A}}
+\newcommand{\BB}{\mathbb{B}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\DD}{\mathbb{D}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\GG}{\mathbb{G}}
+\newcommand{\HH}{\mathbb{H}}
+\newcommand{\II}{\mathbb{I}}
+\newcommand{\JJ}{\mathbb{J}}
+\newcommand{\KK}{\mathbb{K}}
+\newcommand{\LL}{\mathbb{L}}
+\newcommand{\MM}{\mathbb{M}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\OO}{\mathbb{O}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\renewcommand{\SS}{\mathbb{S}}
+\newcommand{\TT}{\mathbb{T}}
+\newcommand{\UU}{\mathbb{U}}
+\newcommand{\VV}{\mathbb{V}}
+\newcommand{\WW}{\mathbb{W}}
+\newcommand{\XX}{\mathbb{X}}
+\newcommand{\YY}{\mathbb{Y}}
+\newcommand{\ZZ}{\mathbb{Z}}
+
+%Calligraphic letters
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+% I used a macro for Id. If one writes $Id$ the "I" and "d" are far apart, because Latex interprets it a product of I and d. 
+\DeclareMathOperator{\Id}{Id}
+
+% some other random commands 
+
+\newcommand{\plu}{Pl\"ucker }
+\newcommand{\gro}{Gr\"obner }
+
+\newcommand{\N}{\mathbb{N}^n_0}
+\newcommand{\G}{G= \{g_1, \ldots, g_t \}}
+\newcommand{\p}{\partial}
+
+\newcommand{\sub}{\subset}
+\newcommand{\cont}{\supset}
+
+
+\newcommand{\R}{\KK[x_1, \ldots, x_n]}
+\newcommand{\E}{\we(x_1, \ldots, x_n)}
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\xa}{\x^{\mathbf{a}}}
+\newcommand{\y}{\mathbf{y}}
+\newcommand{\ya}{\y^{\mathbf{a}}}
+\newcommand{\w}{\mathbf{w}}
+\newcommand{\bfu}{\mathbf{u}}
+\newcommand{\bfa}{\mathbf{a}}
+\newcommand{\bfb}{\mathbf{b}}
+\newcommand{\bfc}{\mathbf{c}}
+\newcommand{\bfd}{\mathbf{d}}
+\newcommand{\bfz}{\mathbf{0}}
+
+%I can never spell lambda
+\newcommand{\la}{\lambda}
+
+
+\title{Automatic Geometric Theorem Proving}
+\author{Sam Ratliff}
+\date{19 March 2021}
+\begin{document}
+
+\maketitle
+
+
+
+\section{Automatic Geometric Theorem Proving with Gröbner Bases}
+
+\end{document}
