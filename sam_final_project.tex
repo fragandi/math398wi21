@@ -314,6 +314,7 @@ Thus, when we reach $R_0$, all of the $x_i$s will have been eliminated and we wi
 
 \subsection{Wu's Method}
 Wu's method lets us use pseudodivision to determine whether a conclusion $g$ follows from a triangularized set of hypotheses $f_1,\dots,f_n$.
+Once again, however, Wu's method is not guaranteed to work on reducible varieties. As such, decomposing a variety into its irreducible components and determining $V'$ may still be required.
 \begin{Theorem}[Wu's Method]
     Let $R_0$ be the final remainder computed by the successive pseudodivision of $g$ by the set of triangularized hypotheses $f_1,\dots,f_n$ as discussed above.
     Let $d_i$ be the leading coefficient of each $f_i$. 
@@ -337,7 +338,14 @@ We know that since $V'$ is an irreducible component of $\textbf{V}(f_1,\dots,f_n
 Once again, for all points on $V'$, each $f_i = 0$, so it also holds on the points in $V'$ that at least one polynomial on the left side of the equation must equal zero.  
 Thus, by removing the points where any $d_i = 0$ from our variety, we find that $g = 0$ on $V' \setminus \textbf{V}(d_1d_2\cdots d_n)$. 
 
-I wrote a basic implementation of Wu's method in the file \texttt{6.5.6.m2} and used it to prove Example 1 from Section 6.4. 
+I wrote a basic implementation of the pseudodivision algorithm in the file \texttt{6.5.6.m2} and used it to prove Example 1 from Section 6.4. 
+I used this implementation to follow Wu's method for triangularizing the hypotheses and testing the conclusions of the parallelogram proof.
+I found that once I had set up my pseudodivision algorithm, the process went very smoothly and was much less time consuming to complete than the original method presented by the book in 6.4.
 
+Wu's method and its variants are generally recognized as the computationally preferable automatic geometric theorem prover and are used much more often than the Gröbner basis method.
+This is because the triangularization and pseudodivision algorithms are significantly less computationally demanding than determining the Gröbner basis of an ideal.
+The \gro basis of an ideal preserves many more nice properties of the ideal than the triangularization procedure. 
+It is unsurprising, then, that computing a \gro basis is a more intricate and time-consuming process than triangularizing the same set of functions.
+Since the added benefits of using a \gro basis are not used in automatic geometric theorem proving, it is more computationally efficient to use a solver like Wu's method.
 
 \end{document}
