@@ -246,6 +246,52 @@
 
 
 \section{Automatic Geometric Theorem Proving with Gröbner Bases}
+
+\subsection{Notation and Intuition}
+In any geometric construction, some decisions are arbitrary, like where we place our origin or how long we draw our first line.
+However, later in the construction, other decisions will depend on choices we made earlier. 
+After all, if you're drawing a triangle and you've already drawn two sides of it, you're rather limited in the options that you have to draw the last side.
+In order to reflect this distinction in our proofs,
+we will use the variables $u_1,\dots,u_m$ to indicate a variable that has no explicit restriction on its value and 
+we will use the variables $x_1,\dots,x_n$ to indicate a dependant variable that has a value that is defined by the values of the variables $u_1,\dots, u_m$. 
+
+As an example, consider four equally spaced points on the $x$-axis of the Cartesian plane. Then, two of these points trisect the line segment created by the first two. 
+Call these points $A$, $B$, $M_1$ and $M_2$. 
+For the sake of convenience, take $A = (0,0)$.  Then, take $B = (u_1, 0)$. Now, the locations of $M_1$ and $M_2$ have been determined by the selection of $B$.
+Thus, we denote $M_1$ as $(x_1,0)$ and $M_2$ as $(x_2,0)$.
+
+Based on our construction, we know these points are equally spaced. Thus, $AM_1 = M_1M_2 = M_2B$.
+We can express these relations by writing $x_1 - 0 = x_2  - x_1 = u_1 - x_2$, which, after rearranging, yields the equations below.
+\begin{align*}
+    h_1 & = x_2 - 2x_1 = 0\\
+    h_2 & = u_1 - 2x_2 + x_1 = 0\\
+    h_3 & = u_1 - x_2 - x_1 = 0
+\end{align*}
+
+The relations above do not explicitly relate the length of one of the smaller segments like $\overline{AM_1}$ to the length of $\overline{AB}$. 
+However, we have enough information to show that $3\cdot AM_1 = AB$.
+
+When we encode $3\cdot AM_1 = AB$ as a polynomial, we get the equation $3 (x_1 - 0) = u_1 - 0$. By rearranging, we get the polynomial $g = u_1 - 3x_1 = 0$.
+Notice that
+\begin{align*}
+    h_1 + h_3 & = (u_1 - x_2 - x_1) + (x_2 - x_1)\\
+              & = u_1 - 3x_1\\
+              & = g
+\end{align*}
+Therefore, $g$ is a linear combination of our hypotheses and the equation $g = 0$ holds for all solutions to the system of equations $h_1 = h_2 = h_3 = 0$.
+Thus, $g \in \langle h_1,h_2,h_3 \rangle$.
+
+We can easily check whether a polynomial is a member of an ideal by dividing it by the \gro basis of the ideal.
+This is a much more reliable method than eyeballing our equations and figuring out whether $g$ can be written as a linear combination of our hypotheses.
+
+\subsection{Translating Theorems into Polynomials}
+As shown in the example above, we can translate many geometric statements into polynomials. 
+This is because many geometric statements are asserting some form of equivalence between two quantities.
+In the example above, we equated the distances between points in order to represent two line segments having the same length.
+Similarly, we can equate slopes of lines to indicate that they are parallel and we can use mathematical objects like dot products and cross products to measure angles between line segments.
+More complicated geometric statements, like those relating to collinearity, midpoints, circles, and other common geometric constructs, 
+can be synthesized by modifying and combining the previous definitions.
+For example, three collinear points can be expressed by the relation $AB = AM + MB$, which is a modification of the critereon for two lines having the same length.
 \subsection{Irreducible Varieties}
 
 \section{Automatic Geometric Theorem Proving with Wu's Method}
