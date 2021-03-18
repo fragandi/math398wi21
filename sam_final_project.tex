@@ -246,5 +246,32 @@
 
 
 \section{Automatic Geometric Theorem Proving with Gröbner Bases}
+\subsection{Irreducible Varieties}
 
+\section{Automatic Geometric Theorem Proving with Wu's Method}
+\subsection{Pseudodivision}
+Pseudodivision behaves similar to one variable polynomial division. Let $f$ and $g$ be polynomials in $k[x_1,\dots,x_n,y]$. First, we select a variable $y$ to pseudodivide with respect to. Then, we rewrite $f$ and $g$ in the form 
+\begin {align*}
+    f & = c_py^p + \cdots + c_1y + c_0\\
+    g & = d_my^m + \cdots + d_1y + d_0
+\end{align*}
+This allows us to isolate $y$ in each monomial. It is important to note that in normal one variable polynomial division, the coefficients of $y$ are in the field $k$. 
+In polynomial pseudodivision, however, the coefficients of $y$ are polynomials in $k[x_1,\dots,x_n]$.
+
+We also need to add an additional condition to single variable polynomial division for pseudodivision to be useful. 
+To ensure that the pseudodivision works, we multiply $f$ by a power of $d_m$. 
+We do this to ensure that the leading term of $d_m f$, the polynomial that we are dividing, is divisible by the leading term of $g$, the polynomial that we are dividing by. 
+In other words, we do not know if $c_p$ is divisible by $d_m$, but we do know that there exists some $s \geq 0$ such that $d_m^s\cdot c_p$ is divisible by $d_m$.
+While $s = 1$ will easily satisfy this relationship for the first leading terms of $f$ and $g$, we may need to pick a larger $s$ for terms later in the polynomial.
+\begin{Proposition}[Pseudodivision]
+Let $f, g \in k[x_1,\dots,x_n,y]$, where $deg(g,y) \leq deg(f,y)$. Then, in order to isolate $y$, rewrite $f$ and $g$ as follows:
+\begin {align*}
+    f & = c_py^p + \cdots + c_1y + c_0\\
+    g & = d_my^m + \cdots + d_1y + d_0
+\end{align*}
+Then, there exists an equation of the form $$d_m^s f = qg + r,$$ where $q,r \in k[x_1,\dots,x_n,y]$, $s \geq 0$, and either $r = 0$ or $deg(r,y) < m$.
+\end{Proposition}
+
+
+\subsection{Wu's Method}
 \end{document}
