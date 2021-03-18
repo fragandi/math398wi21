@@ -250,7 +250,8 @@
 
 \section{Automatic Geometric Theorem Proving with Wu's Method}
 \subsection{Pseudodivision}
-Pseudodivision behaves similar to one variable polynomial division. Let $f$ and $g$ be polynomials in $k[x_1,\dots,x_n,y]$. First, we select a variable $y$ to pseudodivide with respect to. Then, we rewrite $f$ and $g$ in the form 
+Pseudodivision behaves similar to one variable polynomial division. Let $f$ and $g$ be polynomials in the field $k[x_1,\dots,x_n,y]$.
+First, we select a variable $y$ to pseudodivide with respect to. Then, we rewrite $f$ and $g$ in the form 
 \begin {align*}
     f & = c_py^p + \cdots + c_1y + c_0\\
     g & = d_my^m + \cdots + d_1y + d_0
@@ -263,6 +264,11 @@ To ensure that the pseudodivision works, we multiply $f$ by a power of $d_m$.
 We do this to ensure that the leading term of $d_m f$, the polynomial that we are dividing, is divisible by the leading term of $g$, the polynomial that we are dividing by. 
 In other words, we do not know if $c_p$ is divisible by $d_m$, but we do know that there exists some $s \geq 0$ such that $d_m^s\cdot c_p$ is divisible by $d_m$.
 While $s = 1$ will easily satisfy this relationship for the first leading terms of $f$ and $g$, we may need to pick a larger $s$ for terms later in the polynomial.
+
+We can also think about the multiple of $d_m^s$ in another way. 
+Instead of multiplying by a power of $d_m$ before dividing, we use one variable polynomial division with respect ot $y$ to divide $f$ by $g$ and we don't worry about whether $c_p$ is divisible by $d_m$. 
+This means that some of the coefficients of our pseudoquotient and pseudoremainder may end up being rational polynomials. 
+To rectify this, we multiply both sides by the smallest power of $d_m$ that will cancel the denominators that still remain in the pseudoquotient and pseudoremainder.
 \begin{Proposition}[Pseudodivision]
 Let $f, g \in k[x_1,\dots,x_n,y]$, where $deg(g,y) \leq deg(f,y)$. Then, in order to isolate $y$, rewrite $f$ and $g$ as follows:
 \begin {align*}
@@ -272,6 +278,66 @@ Let $f, g \in k[x_1,\dots,x_n,y]$, where $deg(g,y) \leq deg(f,y)$. Then, in orde
 Then, there exists an equation of the form $$d_m^s f = qg + r,$$ where $q,r \in k[x_1,\dots,x_n,y]$, $s \geq 0$, and either $r = 0$ or $deg(r,y) < m$.
 \end{Proposition}
 
+We denote the pseudoremainder $r$ of $f$ pseudodivided by $g$ with respect to $y$ as $Rem(f,g,y)$.
+One nice property of the pseudoremainder is that, as stated in the propositoin above, $deg(r,y) < deg(f,y) = m$. 
+Thus, if we replace $f$ with $r$ and repeatedly pseudodivide, we can eliminate the variable $y$ from an equation without losing other important information about it. 
+This operation is similar to mapping a number to its equivalence class modulo $n$. 
+In the case of integer equivalence classes, we are only interested in the remainder, which functionally behaves the same as the original integer under the operations of the ring.
+
+\subsection{Triangularization}
+Let $f_1',\dots,f_n' \in k[u_1,\dots,u_m,x_1,\dots,x_n]$ be the hypotheses derived from our geometric system.
+By using pseudodivision, we can reduce these hypotheses down to triangular form. To do this, we take the $f_i'$ that has the lowest nonzero degree in $x_n$ and swap it with $f_n'$.
+Then, for each $f_j'$ where $j < n$, if $f_j'$ depends on $x_n$, we replace $f_j'$ with $Rem(f_j', f_n, x_n)$. We repeat this process until $f_n'$ is the only hypothesis that depends on $x_n$. 
+Then, we find the $f_i'$ that has the lowest nonzero degree in $x_{n-1}$ and swap it with $f_{n-1}'$.
+We repeat this process until we have reached a set of hypotheses of the form
+\begin{align*}
+    f_1' & = f_1'(u_1,\dots,u_m,x_1)\\
+    f_2' & = f_2'(u_1,\dots,u_m,x_2)\\
+    \vdots & \\
+    f_n' & = f_n'(u_n,\dots,u_m,x_1,\dots,x_n)
+\end{align*}
+
+\subsection{Successive Pseudodivision}
+
+A quick note about notation: unfortunately, the book uses $f$ and $g$ to introduce pseudodivision. We divide $f$ by $g$ in the definition of pseudodivision.
+It also uses the set of $f_1,\dots,f_n$ to represent the triangularized polynomials and uses $g$ to represent the conclusion of our proof.
+This means that we end up dividing $g$ by the set of $f_1,\dots,f_n$ in this section, which is the opposite of what we had before. 
+This tripped me up on my first reading, so I wanted to clarify that point here. Anyway, back to the math.
+
+Much like in the triangularization procedure, we can use pseudodivision on any polynomial in order to eliminate the variables $x_1,\dots,x_n$ from its remainder.
+We do this with the following process.
+
+Let $R_n = g$. Then, compute $R_{i-1} = Rem(R_i,f_i,x_i)$. Each successive pseudodivision will eliminate each $x_i$. 
+Additionally, we know that each $x_i$ will not be reintroduced in a later pseudodivision because the system has been triangularized.
+Thus, when we reach $R_0$, all of the $x_i$s will have been eliminated and we will have a polynomial that depends only on $u_1,\dots,u_m$.
+
 
 \subsection{Wu's Method}
+Wu's method lets us use pseudodivision to determine whether a conclusion $g$ follows from a triangularized set of hypotheses $f_1,\dots,f_n$.
+\begin{Theorem}[Wu's Method]
+    Let $R_0$ be the final remainder computed by the successive pseudodivision of $g$ by the set of triangularized hypotheses $f_1,\dots,f_n$ as discussed above.
+    Let $d_i$ be the leading coefficient of each $f_i$. 
+    Then, there are nonnegative integers $s_1,\dots,s_n$ and polynomials $A_1,\dots,A_n$ in the ring $\mathbb{R}[u_1,\dots,u_m,x_1\dots,x_n]$ such that
+    $$d_{1}^{s_1}\cdot d_2^{s_2} \cdots d_n^{s_n} g = A_1 f_1 + \cdots + A_n f_n + R_0.$$
+    Additionally, if $R_0$ is the zero polynomial, then $g$ is zero at every point of $V' \setminus \textbf{V}(d_1d_2\cdots d_n) \subseteq \mathbb{R}^{m+n}$.
+\end{Theorem}
+The proof of the first part of this theorem is rather intuitive. 
+By rearranging the definition of pseudodivision, we can see that after our first step of successive pseudodivision, we can see that $$R_{n-1} = d_n^{s_n} g - q_nf_n.$$
+When we pseudodivide again, we get
+\begin{align*}
+    R_{n-2} & = d_{n-1}^{s_{n-1}}(d_n^{s_n} g - q_nf_n) - q_{n-1}f_{n-1}\\
+            & = d_{n-1}^{s_{n-1}}d_n^{s_n} g - q_{n-1}f_{n-1} - d_{n-1}^{s_{n-1}}q_nf_n \\
+\end{align*}
+From here, it is apparent that the $d_i^{s_i}$ terms will accumulate in front of $g$ and each $f_i$ will also be multiplied by some polynomial.
+
+If $R_0$ is the zero polynomial, then $$d_{1}^{s_1} \cdots d_n^{s_n} g = A_1 f_1 + \cdots + A_n f_n.$$
+Therefore, for every point on the variety $\textbf{V}(f_1,\dots,f_n)$, each $f_i = 0$, so at least one polynomial on the left side of the equation must equal zero. 
+
+We know that since $V'$ is an irreducible component of $\textbf{V}(f_1,\dots,f_n)$, it must hold that $V' \subseteq \textbf{V}(f_1,\dots,f_n)$.
+Once again, for all points on $V'$, each $f_i = 0$, so it also holds on the points in $V'$ that at least one polynomial on the left side of the equation must equal zero.  
+Thus, by removing the points where any $d_i = 0$ from our variety, we find that $g = 0$ on $V' \setminus \textbf{V}(d_1d_2\cdots d_n)$. 
+
+I wrote a basic implementation of Wu's method in the file \texttt{6.5.6.m2} and used it to prove Example 1 from Section 6.4. 
+
+
 \end{document}
