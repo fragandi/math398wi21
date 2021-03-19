@@ -1,40 +1,9 @@
-\documentclass{article}
+\documentclass[12pt]{article}
 \usepackage[utf8]{inputenc}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Redefine margins and other page formatting
-
-
-
-%packages I need
-
-
-
-\usepackage{tikz}
-\usepackage{tikz-cd}
-
-
-\usetikzlibrary{arrows,decorations.pathmorphing,decorations.pathreplacing,positioning,shapes.geometric,shapes.misc,decorations.markings,decorations.fractals,calc,patterns}
-
-\usepackage{graphics}
-\usepackage[margin=1in]{geometry}
-\usepackage[all]{xy}
-\usepackage{amsrefs}
 \usepackage{amsmath}
-\usepackage{amsthm}
 \usepackage{amssymb}
-\usepackage{amsfonts}
-\usepackage{amsxtra}     % Use various AMS packages
-
-
-\usepackage{epsfig}
-\usepackage{verbatim}
-\usepackage{enumitem}
-\usepackage{algorithmicx}
-\usepackage{algpseudocode}
-
+\usepackage{amsthm}
+\usepackage{theoremref}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Various theorem environments. All of the following have the same numbering
@@ -60,152 +29,6 @@
 \theoremstyle{remark}
 \newtheorem{Remark}[Theorem]{Remark}
 \include{header}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \numberwithin{Theorem}{chapter}        % Numbers theorems "x.y" where x
-                                        % is the section number, y is the
-                                        % theorem number
-
-% \renewcommand{\thechapter}{\arabic{chapter}}
-  
-% \renewcommand{\thetheorem}{\roman{chapter}.\arabic{theorem}}
-
-%\makeatletter                          % This sequence of commands will
-%\let\c@equation\c@theorem              % incorporate equation numbering
-%\makeatother                           % into the theorem numbering scheme
-
-%\renewcommand{\theenumi}{(\roman{enumi})}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% When you first define a new word, use this macro to make it stand out
-% EG We say that an abelian group $I$ is \newword{injective} if, for any
-% injection $G \to H$, and any map $G \to I$, there is a map $H \to I$ making the
-% obvious diagram commute.
-
-\newcommand{\newword}[1]{\textbf{\emph{#1}}}
-
-%Arrows
-\newcommand{\into}{\hookrightarrow}
-\newcommand{\onto}{\twoheadrightarrow}
-
-%Things LaTeX names by appearance, rather than meaning
-% By now, I've learned the standard LaTeX names, but I remember they used to give me trouble, so here are some macros
-%You can create your own macros with newcommand
-
-\newcommand{\isom}{\cong} %The isomorphism symbol
-\newcommand{\union}{\cup}
-\newcommand{\intersection}{\cap}
-\newcommand{\bigunion}{\bigcup}
-\newcommand{\bigintersection}{\bigcap}
-\newcommand{\disjointunion}{\sqcup}
-\newcommand{\bigdisjointunion}{\bigsqcup}
-
-
-%with DeclareMathOperator you can define a new command which in math environment looks like a mathematical function
-
-%Some multiletter functions
-\DeclareMathOperator{\Hom}{Hom}
-\DeclareMathOperator{\Ext}{Ext}
-\DeclareMathOperator{\End}{End}
-\DeclareMathOperator{\Tor}{Tor}
-\DeclareMathOperator{\Ker}{Ker}
-\DeclareMathOperator{\CoKer}{CoKer}
-\DeclareMathOperator{\Spec}{Spec}
-\DeclareMathOperator{\MaxSpec}{MaxSpec}
-\DeclareMathOperator{\Proj}{Proj}
-\DeclareMathOperator{\Frac}{Frac}
-\renewcommand{\Im}{\mathop{\mathrm{Im}}}
-
-
-\DeclareMathOperator{\Obj}{Obj}
-\DeclareMathOperator{\kernel}{ker}
-\DeclareMathOperator{\im}{im}
-\DeclareMathOperator{\spa}{span}
-\DeclareMathOperator{\init}{in}
-\DeclareMathOperator{\rk}{rk}
-
-
-%Their calligraphic versions; use these for the sheaf constructions
-\DeclareMathOperator{\HHom}{\mathcal{H}\emph{om}}
-\DeclareMathOperator{\EExt}{\mathcal{E}\emph{xt}}
-\DeclareMathOperator{\EEnd}{\mathcal{E}\emph{nd}}
-\DeclareMathOperator{\TTor}{\mathcal{T}\emph{or}}
-\DeclareMathOperator{\KKer}{\mathcal{K}\emph{er}}
-\DeclareMathOperator{\CCoKer}{\mathcal{C}\emph{o}\mathcal{K}\emph{er}}
-\newcommand{\IIm}{\mathop{\mathcal{I}\emph{m}}}
-\DeclareMathOperator{\codim}{codim}
-
-
-
-%This makes alternating tensors look right in displayed equations
-\newcommand{\Alt}{\bigwedge\nolimits}
-
-
-%Blackboard bold letters.
-\renewcommand{\AA}{\mathbb{A}}
-\newcommand{\BB}{\mathbb{B}}
-\newcommand{\CC}{\mathbb{C}}
-\newcommand{\DD}{\mathbb{D}}
-\newcommand{\EE}{\mathbb{E}}
-\newcommand{\FF}{\mathbb{F}}
-\newcommand{\GG}{\mathbb{G}}
-\newcommand{\HH}{\mathbb{H}}
-\newcommand{\II}{\mathbb{I}}
-\newcommand{\JJ}{\mathbb{J}}
-\newcommand{\KK}{\mathbb{K}}
-\newcommand{\LL}{\mathbb{L}}
-\newcommand{\MM}{\mathbb{M}}
-\newcommand{\NN}{\mathbb{N}}
-\newcommand{\OO}{\mathbb{O}}
-\newcommand{\PP}{\mathbb{P}}
-\newcommand{\QQ}{\mathbb{Q}}
-\newcommand{\RR}{\mathbb{R}}
-\renewcommand{\SS}{\mathbb{S}}
-\newcommand{\TT}{\mathbb{T}}
-\newcommand{\UU}{\mathbb{U}}
-\newcommand{\VV}{\mathbb{V}}
-\newcommand{\WW}{\mathbb{W}}
-\newcommand{\XX}{\mathbb{X}}
-\newcommand{\YY}{\mathbb{Y}}
-\newcommand{\ZZ}{\mathbb{Z}}
-
-%Calligraphic letters
-
-\newcommand{\cA}{\mathcal{A}}
-\newcommand{\cB}{\mathcal{B}}
-\newcommand{\cC}{\mathcal{C}}
-\newcommand{\cD}{\mathcal{D}}
-\newcommand{\cE}{\mathcal{E}}
-\newcommand{\cF}{\mathcal{F}}
-\newcommand{\cG}{\mathcal{G}}
-\newcommand{\cH}{\mathcal{H}}
-\newcommand{\cI}{\mathcal{I}}
-\newcommand{\cJ}{\mathcal{J}}
-\newcommand{\cK}{\mathcal{K}}
-\newcommand{\cL}{\mathcal{L}}
-\newcommand{\cM}{\mathcal{M}}
-\newcommand{\cN}{\mathcal{N}}
-\newcommand{\cO}{\mathcal{O}}
-\newcommand{\cP}{\mathcal{P}}
-\newcommand{\cQ}{\mathcal{Q}}
-\newcommand{\cR}{\mathcal{R}}
-\newcommand{\cS}{\mathcal{S}}
-\newcommand{\cT}{\mathcal{T}}
-\newcommand{\cU}{\mathcal{U}}
-\newcommand{\cV}{\mathcal{V}}
-\newcommand{\cW}{\mathcal{W}}
-\newcommand{\cX}{\mathcal{X}}
-\newcommand{\cY}{\mathcal{Y}}
-\newcommand{\cZ}{\mathcal{Z}}
-
-% I used a macro for Id. If one writes $Id$ the "I" and "d" are far apart, because Latex interprets it a product of I and d. 
-\DeclareMathOperator{\Id}{Id}
-
-% some other random commands 
 
 \newcommand{\plu}{Pl\"ucker }
 \newcommand{\gro}{Gr\"obner }
@@ -246,7 +69,9 @@
 
 
 \section{Automatic Geometric Theorem Proving with Gröbner Bases}
-
+Many geometric proofs are done without reference to a coordinate system. To some extent, an explicit coordinate system is not necessary in many elementary geometric applications.
+However, by introducing a coordinate plane, we can more easily represent geometric objects and statements through equations. 
+By doing so, we can reduce geometric problems into polynomial systems of equations. Thus, \gro bases appear to be uniquely well-suited to the task of automatic geometric theorem proving.
 \subsection{Notation and Intuition}
 In any geometric construction, some decisions are arbitrary, like where we place our origin or how long we draw our first line.
 However, later in the construction, other decisions will depend on choices we made earlier. 
@@ -269,18 +94,20 @@ We can express these relations by writing $x_1 - 0 = x_2  - x_1 = u_1 - x_2$, wh
 \end{align*}
 
 The relations above do not explicitly relate the length of one of the smaller segments like $\overline{AM_1}$ to the length of $\overline{AB}$. 
-However, we have enough information to show that $3\cdot AM_1 = AB$.
+However, we can intuitively guess that $\overline{AM_1}$ is one third of the length of $\overline{AB}$. 
 
-When we encode $3\cdot AM_1 = AB$ as a polynomial, we get the equation $3 (x_1 - 0) = u_1 - 0$. By rearranging, we get the polynomial $g = u_1 - 3x_1 = 0$.
+We can encode this relationship as a polynomial. First we write an equation in terms of the lengths of the line segments, which yields $3\cdot AM_1 = AB$.
+When we rewrite this as a polynomial, we get the equation $3 (x_1 - 0) = u_1 - 0$. By rearranging, we get the polynomial $g = u_1 - 3x_1 = 0$.
 Notice that
 \begin{align*}
     h_1 + h_3 & = (u_1 - x_2 - x_1) + (x_2 - x_1)\\
               & = u_1 - 3x_1\\
               & = g
 \end{align*}
-Therefore, $g$ is a linear combination of our hypotheses and the equation $g = 0$ holds for all solutions to the system of equations $h_1 = h_2 = h_3 = 0$.
-Thus, $g \in \langle h_1,h_2,h_3 \rangle$.
+Therefore, $g$ is a linear combination of our hypotheses, so if $h_1 = h_2 = h_3 = 0$, then $g = 0$ also holds.
+Moreover, since ideals are closed under addition, it follows that $g \in \langle h_1,h_2,h_3 \rangle$.
 
+When $g \in \textbf{I}(V)$, where $V = \textbf{V}(h_1,h_2,h_3)$, we say that $g$ \textbf{follows strictly} from the hypothesis set.
 We can easily check whether a polynomial is a member of an ideal by dividing it by the \gro basis of the ideal.
 This is a much more reliable method than eyeballing our equations and figuring out whether $g$ can be written as a linear combination of our hypotheses.
 
@@ -301,8 +128,8 @@ The reason that this occurs is because the variety associated with the ideal of 
 We can readily see this by factoring the generators of our \gro basis. 
 
 In order to reduce our \gro basis, we factor all of the generators. 
-Then, we two new \gro bases, where each new \gro basis uses all of the same generators as the previous one, except it replaces a factorable generator by one of its factors.
-The first generator that I factored was $f_2$, which can be reexpressed as $u_3(x_1 - u_1 - u_2)$.
+Then, we compute two new \gro bases, where each new \gro basis uses all of the same generators as the previous one, except it replaces a factorable generator by one of its factors.
+The first generator that I factored was $f_2$, which can be factored into $u_3(x_1 - u_1 - u_2)$.
 To reduce this basis, we compute new \gro bases of the ideals $\langle f_1, x_1 - u_1 - u2, f_3, f_4, f_5, f_6 \rangle$ and $\langle f_1, u_3, f_3, f_4, f_5, f_6 \rangle$.
 This yields more generators, which we can factor again. We repeat this process until our generators are not factorable. 
 We can select a set of \gro bases from our final collection such that the varieties that they are associated with are the irreducible components of $V$.
@@ -324,7 +151,7 @@ It's up to the programmer to ensure that the results have the expected meaning.
 
 \subsection{Degenerate Solutions}
 
-We call solutions like those found in $U_1$ \textit{degenerate}. If we want to find solutions that correspond to the system that we are interested in, we have to exclude degenerate solutions.
+We call solutions like those found in $U_1$ \textbf{degenerate}. If we want to find solutions that correspond to the system that we are interested in, we have to exclude degenerate solutions.
 In the case of $U_1$, we noticed that $u_3$ was one of our generators. 
 If any of our generators are composed wholly of $u$ variables, then some of the solutions in that variety are related to an incorrectly set up system.
 In our case, this improper system will likely be a line.
@@ -336,8 +163,14 @@ In our example, we can see that the only irreducible variety of $V$ that the $u$
 Thus, we will not have to worry about degenerate solutions appearing on $V'$. 
 As such, we can use the generators of the \gro basis of $V'$ to determine whether $g$ follows from the hypotheses.
 
+If $g \in \textbf{I}(V')$, where the $u$ variables are algebraically independant over $V'$, we say that $g$ \textbf{follows generically} from the hypotheses.
+Note that the difference between following strictly and following generically from the hypotheses is that if $g \in \textbf{I}(V)$, it follows strictly, 
+while if $g \in \textbf{I}(V')$, it follows generically.
+Since $V' \subseteq V$, it is a stronger condition to state that $g$ follows generically from the hypotheses.
 
-\subsection{Better Hypotheses}
+
+\subsection{Optimizations}
+\subsubsection{Better Hypotheses}
 The hypotheses in this example come in pairs. The first two hypotheses describe the location of the point $D$, while the second pair describe the point $N$.
 The book presents a second set of hypotheses that replace the hypotheses that describe the location of $D$.
 Instead of using slopes to locate $D$, the book instead looks at the diagram and notes that $(u_1 + u_2,u_3) = (x_1,x_2)$. 
@@ -347,7 +180,48 @@ This simplifies the process of reducing the variety into irreducible components 
 By choosing better hypotheses, we avoid having to factor and reduce a variety at least once. 
 In fact, I only had to reduce the variety generated by these new hypotheses twice in order to find $V'$, whereas I had to reduce the variety five times with the orignal set of hypotheses.
 Thus, picking a good hypothesis set can potentially halve the amount of work that has to be done.
+\subsubsection{Avoiding Decomposition}
+There are also techniques that we can use to determine if $g$ is in the algebraically independant region of $V$ without decomposing $V$ into its irreducible components.
+\begin{Proposition}
+    The conclusion $g$ follows generically from the hypotheses $h_1,\dots,h_n$ whenever there is some nonzero polynomial $c(u_1,\dots,u_m) \in \mathbb{R}[u_1,\dots,u_m]$ such that
+    $$c \cdot g \in \sqrt{H},$$
+    where $H$ is the ideal generated by the set of hypotheses.
+\end{Proposition}
+The proof for this is rather intuitive. I present an informal rendering of it below.
 
+We know that $c \cdot g \in \sqrt{H}$, so it must hold that $c\cdot g = 0$ at all points on the variety $V$.
+Therefore, since $V' \subseteq V$, $c \cdot g = 0$ on $V'$.
+We know that the $u$ variables are algebraically independant over $V'$. Since $c$ depends only on $u$ variables, it must hold that $c \not = 0$ on $V'$.
+In order for $c \cdot g = 0$ to hold on $V'$, it must be true that $g = 0$ on $V'$. Thus, $g$ follows generically from the hypotheses.
+
+There are two other equivalent characterizations of $g$ that we can use in order to determine whether $g$ follows generically from the set of hypotheses.
+One nice feature of these alternate characterizations is that they do not rely on determining the existance of a polynomial $c$.
+\begin{Corollary}
+    The following statements are equivalent:
+    \begin{enumerate}
+        \item There is a nonzero polynomial $c \in \mathbb{R}[u_1,\dots,u_m]$ such that $c \cdot g \in \sqrt{H}$.
+        \item $g \in \sqrt{\tilde{H}}$, where $\tilde{H}$ is the ideal generated by the hypotheses in $\mathbb{R}(u_1,\dots,u_m)[x_1,\dots,x_n]$.
+        \item $\{1\}$ is the reduced \gro basis of the ideal $$\langle h_1, \dots, h_n, 1-yg \rangle \subseteq \mathbb{R}(u_1,\dots,u_m)[x_1,\dots,x_n,y].$$
+    \end{enumerate}
+\end{Corollary}
+
+Notice that $(3)$ provides us with a straightforward computational way to determine whether $g$ follows from the hypothesis set.
+We simply compute the reduced \gro basis of the ideal $\langle h_1, \dots, h_n, 1-yg \rangle \subseteq \mathbb{R}(u_1,\dots,u_m)[x_1,\dots,x_n,y]$ and check whether it is the set $\{1\}$.
+If it is, then $(1)$ is equivalently true, so the proposition above holds and $g$ follows generically from the hypotheses.
+
+This new method illuminates two problems. First, since we do not decompose the variety into irreducible components in this method, we learn very little about the variety itself.
+In particular, we don't have any information about the degenerate solutions that are present in the variety. 
+The polynomial $c$ in the proposition above contains information about the degenerate solutions. 
+Intuitively, this makes sense, as $g$ contains information related to the algebraically independant solutions. 
+Since $(3)$ of the corollary makes no mention of $c$, though, we need to do additional computations to determine $c$ if we want information about the degenerate cases.
+
+Secondly, it uncovers a major limitation of the \gro basis method of theorem proving. 
+By extending the \gro basis method to the complex plane, we can show that $g$ follows generically from a set of hypotheses in $\mathbb{R}[u_1,\dots,u_m,x_1,\dots,x_n]$ if and only if it also follows 
+generically from the same hypotheses in $\mathbb{C}[u_1,\dots,u_m,x_1,\dots,x_n]$.
+Hence, the \gro basis method proves theorems that are true in the complex plane. As such, this method is unable to prove theorems that are true in $\mathbb{R}$ but false in $\mathbb{C}$.
+
+This issue arises because $\mathbb{R}$ is not algebraically closed. In Chapter 4, the concept of a radical ideal was often strongly intertwined with the concept of an algebraically closed field.
+Thus, it is not surprising that the method proposed by $(3)$ of the corollary is restricted to algebraically closed fields, as $(1)$ and $(2)$ of the corollary both make use of radical ideals.
 
 \section{Automatic Geometric Theorem Proving with Wu's Method}
 Wu's method is a method of automatic geometric theorem proving that predates the \gro basis method discussed above. 
