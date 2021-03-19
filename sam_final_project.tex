@@ -118,7 +118,8 @@ In the example above, we equated the distances between points in order to repres
 Similarly, we can equate slopes of lines to indicate that they are parallel and we can use mathematical objects like dot products and cross products to measure angles between line segments.
 More complicated geometric statements, like those relating to collinearity, midpoints, circles, and other common geometric constructs, 
 can be synthesized by modifying and combining the previous definitions.
-For example, three collinear points can be expressed by the relation $AB = AM + MB$, which is a modification of the critereon for two lines having the same length.
+For example, three collinear points $A$, $B$, and $M$, where $M$ is between $A$ and $B$, 
+can be expressed by the relation $AB = AM + MB$, which is a modification of the critereon for two lines having the same length.
 
 \subsection{Fun with Parallelograms and Irreducible Varieties}
 In \texttt{6.4.11.m2}, I follow the basic structure of the proof of Example 1 through page 326. I encourange the reader to follow along in the code as they read this section.
@@ -135,9 +136,10 @@ This yields more generators, which we can factor again. We repeat this process u
 We can select a set of \gro bases from our final collection such that the varieties that they are associated with are the irreducible components of $V$.
 This will make our subsequent calculations easier while simultaneously explaining why $g$ did not follow strictly from our hypotheses.
 
-The varieties $U_1$, $U_2$, and $U_3$ all have some polynomial in their generators that depends only on a $u$ variable.
+I eventually found that $V$ was composed of four irreducible varieties, $V'$, $U_1$, $U_2,$ and $U_3$.
+Notice that the varieties $U_1$, $U_2$, and $U_3$ all have some polynomial in their generators that depends only on a $u$ variable.
 Consider $U_1$. The \gro basis of $U_1$ is $\{ x_2, x_4, u_3\}$, which corresponds to the set of equations $x_2 = x_4 = u_3 = 0$. 
-By referring back to the definitions of these variables, we can see that solutions that are in $U_1$ correspond to the ``parallelogram" in which the point $C$ is on the $x$-axis.
+By referring back to the definitions of these variables on pages 319 and 320, we can see that solutions that are in $U_1$ correspond to the ``parallelogram" in which the point $C$ is on the $x$-axis.
 Likewise, this forces the points $D$ and $N$ to be on the $x$-axis as well.
 There's nothing mathematically wrong with a solution like this. 
 However, the solutions that it finds do not lead to a parallelogram, which makes it rather difficult to say anything meaningful about the diagonals of said parallelogram.
@@ -293,6 +295,7 @@ Thus, when we reach $R_0$, all of the $x_i$s will have been eliminated and we wi
 \subsection{Wu's Method}
 Wu's method lets us use pseudodivision to determine whether a conclusion $g$ follows from a triangularized set of hypotheses $f_1,\dots,f_n$.
 Once again, however, Wu's method is not guaranteed to work on reducible varieties. As such, decomposing a variety into its irreducible components and determining $V'$ may still be required.
+\pagebreak
 \begin{Theorem}[Wu's Method]
     Let $R_0$ be the final remainder computed by the successive pseudodivision of $g$ by the set of triangularized hypotheses $f_1,\dots,f_n$ as discussed above.
     Let $d_i$ be the leading coefficient of each $f_i$. 
@@ -305,24 +308,25 @@ By rearranging the definition of pseudodivision, we can see that after our first
 When we pseudodivide again, we get
 \begin{align*}
     R_{n-2} & = d_{n-1}^{s_{n-1}}(d_n^{s_n} g - q_nf_n) - q_{n-1}f_{n-1}\\
-            & = d_{n-1}^{s_{n-1}}d_n^{s_n} g - q_{n-1}f_{n-1} - d_{n-1}^{s_{n-1}}q_nf_n \\
+            & = d_{n-1}^{s_{n-1}}d_n^{s_n} g - q_{n-1}f_{n-1} - d_{n-1}^{s_{n-1}}q_nf_n 
 \end{align*}
 From here, it is apparent that the $d_i^{s_i}$ terms will accumulate in front of $g$ and each $f_i$ will also be multiplied by some polynomial.
 
 If $R_0$ is the zero polynomial, then $$d_{1}^{s_1} \cdots d_n^{s_n} g = A_1 f_1 + \cdots + A_n f_n.$$
-Therefore, for every point on the variety $\textbf{V}(f_1,\dots,f_n)$, each $f_i = 0$, so at least one polynomial on the left side of the equation must equal zero. 
+Therefore, for every point on the variety $\textbf{V}(f_1,\dots,f_n)$, each $f_i = 0$, so at least one polynomial in the product on the left side of the equation must equal zero. 
 
 We know that since $V'$ is an irreducible component of $\textbf{V}(f_1,\dots,f_n)$, it must hold that $V' \subseteq \textbf{V}(f_1,\dots,f_n)$.
 Once again, for all points on $V'$, each $f_i = 0$, so it also holds on the points in $V'$ that at least one polynomial on the left side of the equation must equal zero.  
 Thus, by removing the points where any $d_i = 0$ from our variety, we find that $g = 0$ on $V' \setminus \textbf{V}(d_1d_2\cdots d_n)$. 
 
-I wrote a basic implementation of the pseudodivision algorithm in the file \texttt{6.5.6.m2} and used it to prove Example 1 from Section 6.4. 
+I wrote an implementation of the pseudodivision algorithm in the file \texttt{6.5.6.m2} and used it to prove Example 1 from Section 6.4. 
 I used this implementation to follow Wu's method for triangularizing the hypotheses and testing the conclusions of the parallelogram proof.
 I found that once I had set up my pseudodivision algorithm, which was a more arduous process than I had anticipated, 
 the process went very smoothly and was much less time consuming to complete than the original method presented by the book in 6.4.
 One fortunate occurance was that, even though the variety $V$ was not reduced into its components, Wu's method still worked on it.
 Wu's method is proven to work on irreducible varieties on which the $u$ variables are algebraically independant.
 As such, Wu's method may work on an unreduced variety, but it is not a necessary condition.
+Moreover, there are various adaptions and modifications of Wu's method that do not require $V$ to be irreducible in order to prove theorems on $V$.
 
 Wu's method and its variants are generally recognized as the computationally preferable automatic geometric theorem prover and are used much more often than the Gröbner basis method.
 This is because the triangularization and pseudodivision algorithms are significantly less computationally demanding than determining the Gröbner basis of an ideal.
