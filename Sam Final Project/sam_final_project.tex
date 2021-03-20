@@ -328,7 +328,10 @@ Wu's method is proven to work on irreducible varieties on which the $u$ variable
 As such, Wu's method may work on an unreduced variety, but it is not a necessary condition.
 Moreover, there are various adaptions and modifications of Wu's method that do not require $V$ to be irreducible in order to prove theorems on $V$.
 
-Wu's method and its variants are generally recognized as the computationally preferable automatic geometric theorem prover and are used much more often than the Gröbner basis method.
+\section{Which method is better?}
+Both Wu's method and the \gro basis method presented above have the restriction that they only work on irreducible varieties. 
+However, both methods also have more complicated counterparts that resolve these issues.
+As such, Wu's method and its variants are generally recognized as the computationally preferable automatic geometric theorem prover and are used much more often than the Gröbner basis method.
 This is because the triangularization and pseudodivision algorithms are significantly less computationally demanding than determining the Gröbner basis of an ideal.
 The \gro basis of an ideal preserves many more nice properties of the ideal than the triangularization procedure. 
 It is unsurprising, then, that computing a \gro basis is a more intricate and time-consuming process than triangularizing the same set of functions.
