@@ -14,7 +14,7 @@ needsPackage "InvariantRing"
 listSize = i -> (a=0;for n in i do a=a+1; return a)
 
 -- concat list by appending the second to the end of the last
-listAdd = (i,j) -> (for n from 1 to maximum(listSize(i),listSize(j)))
+listAdd = (a,b) -> (m=0; i=#a; j=#b; for n from 0 to i+j-1 list if m==0 then a#n else b#(n-i) do if n+1-i>=0 then m=1)
 
 -- find max because I don't want to import a function to do that for me
 maximum = (a,b) -> (if a>b then return a else return b)
@@ -127,16 +127,7 @@ weightMatrices = {} --Different weight matrices to test. Code makes sure that it
 
 
 --run through every test case that we want
-for v in varSizes do(
-    for p in primeSizes do(
-        for w in weightMatrices do(
-            --Check to make sure we can use this weight matrix
-            if 1==1 then(
-                minimalInvariants(v,d,w)
-            )
-            else
-    )
-)
+
 
 --**** Section Four: Notes ****--
 -- Notes:
