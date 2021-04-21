@@ -61,3 +61,4 @@ R = stringToRing(read "Input the ring (RING[var1,var2,...\n]")
 --Checks to see if it worked
 vars R
 
+--Ask for field and number of variables so then use symbol(x, n) to generate the ring
