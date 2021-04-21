@@ -30,7 +30,7 @@ minimalInvariants = (t,d,weights) ->(
 )
 
 -- **** Second Section: messing around with ways to randomize weights, variables in the ring, order of the group, etc. **** --
---Note: Each function is has a different flavor of randomness. Make sure you choose the one that you want.
+--Note: Each function has a different flavor of randomness. Make sure you choose the one that you want.
 
 
 -- Generates a random weight matrix
@@ -39,7 +39,7 @@ minimalInvariants = (t,d,weights) ->(
 -- @param k the max a weight can be in the weight matrix
 weightMatNM = (n,m,k) -> (L = for i from 1 to n list(for j from 1 to m list random(0,k)); return matrix L)
 
--- First way of randomly finding invriants. This is just the wild west of unrestrained calculations
+-- First way of randomly finding invariants. I don't know how to explain this one I guess
 -- @param i the max number a random weight could be
 -- @param t the number of variables in the ring
 -- @param d the max a number p for Z_p could be
@@ -51,12 +51,13 @@ randInvariants = (i,t,d) -> (
     print W;
     print invariants A)
 
---Useful for getting random primes. Needs to be bigger. Probably will make a separate file for it
-primesList = {2,3,5,7,9,11,13,17}
-
+--Loads a list of primes, checks that it worked with a print
+load "primeList.m2"
+print primeList
 
 -- get a sampling of primes within a range i of size m
--- for example, samplePrimes(3) might return (3,5,7) or (3,3,3)
+-- for example, samplePrimes(3,3) might return (2,5,3) or (3,3,3) etc.
+-- max m allowed is 999 which corresponds to 7919
 samplePrimes = (m,i) -> (for n from 1 to m list primesList#(random i))
 
 -- Randomly find invariants but only for a specific idea:
