@@ -10,9 +10,6 @@ needsPackage "InvariantRing"
 
 -- **** First section: a bunch of functions that I probably could have found but just made myself **** --
 
--- calculates the size of the list because I can't find a function to do that already
-listSize = i -> (a=0;for n in i do a=a+1; return a)
-
 -- concat list by appending the second to the end of the last
 listAdd = (a,b) -> (m=0; i=#a; j=#b; for n from 0 to i+j-1 list if m==0 then a#n else b#(n-i) do if n+1-i>=0 then m=1)
 
@@ -142,3 +139,5 @@ weightMatrices = {} --Different weight matrices to test. Code makes sure that it
 --* I'm going to eventually try and make this a package, but it needs a lot of polish
 --
 --* I want to make a parallel version of a lot of this
+--
+--* to get size of list L do #L
