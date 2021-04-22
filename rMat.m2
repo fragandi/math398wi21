@@ -45,7 +45,7 @@ weightMatNM = (n,m,k) -> (L = for i from 1 to n list(for j from 1 to m list rand
 -- @param d the max a number p for Z_p could be
 randInvariants = (i,t,d) -> (
     R = QQ[x_1..x_t];
-    dimen = {rand(1,d),rand(1,d)};
+    dimen = {(random d)+1,(random d)+1};
     W = weightMatNM(2,t,i);
     A = diagonalAction(W,dimen,R);
     print W;
@@ -58,7 +58,7 @@ print primeList
 -- get a sampling of primes within a range i of size m
 -- for example, samplePrimes(3,3) might return (2,5,3) or (3,3,3) etc.
 -- max m allowed is 999 which corresponds to 7919
-samplePrimes = (m,i) -> (for n from 1 to m list primesList#(random i))
+samplePrimes = (m,i) -> (for n from 1 to m list primeList#(random i))
 
 -- Randomly find invariants but only for a specific idea:
 -- There are t variables in the ring
