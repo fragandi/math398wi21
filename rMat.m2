@@ -18,13 +18,13 @@ maximum = (a,b) -> (if a>b then return a else return b)
 
 -- Runs the Derksen-Gandini Algorithm on a specified ring size, dimension, and weightmatrix
 -- @param t the number of variables in the ring
--- @param dim the list of primes for the Z_p products forming the group
--- @param weights the weight matrix
-minimalInvariants = (t,d,weights) ->(
+-- @param dimen the list of primes for the Z_p products forming the group
+-- @param wts the weight matrix
+minimalInvariants = (t,d,wts) ->(
     R = QQ[x_1..x_t];
-    dim = d;
-    W = weights;
-    A = diagonalAction(W,dim,R);
+    dimen = d;
+    W = wts;
+    A = diagonalAction(W,dimen,R);
     print W;
     print invariants A;
 )
@@ -45,9 +45,9 @@ weightMatNM = (n,m,k) -> (L = for i from 1 to n list(for j from 1 to m list rand
 -- @param d the max a number p for Z_p could be
 randInvariants = (i,t,d) -> (
     R = QQ[x_1..x_t];
-    dim = {rand(1,d),rand(1,d)};
+    dimen = {rand(1,d),rand(1,d)};
     W = weightMatNM(2,t,i);
-    A = diagonalAction(W,dim,R);
+    A = diagonalAction(W,dimen,R);
     print W;
     print invariants A)
 
@@ -70,9 +70,9 @@ samplePrimes = (m,i) -> (for n from 1 to m list primesList#(random i))
 -- @param p the p
 doInvariants = (t,d,p) -> (
     R = QQ[x_1..x_t];
-    dim = for n from 1 to d list p;
+    dimen = for n from 1 to d list p;
     --Need to generate a W
-    A = diagonalAction(W,dim,R);
+    A = diagonalAction(W,dimen,R);
     print W;
     print invariants A
 )
@@ -89,9 +89,9 @@ doInvariants = (t,d,p) -> (
 -- @param p the highest allowable index for a prime (p(0)=2, p(1)=3, p(2)=5, ...)
 testInvariants = (t,d,p) -> (
     R = QQ[x_1..x_t];
-    dim = samplePrimes(d,p);
+    dimen = samplePrimes(d,p);
     --Need to generate a W still
-    A = diagonalAction(W,dim,R);
+    A = diagonalAction(W,dimen,R);
     print W;
     print invaraints A
 )
@@ -109,9 +109,9 @@ testInvariants = (t,d,p) -> (
 -- there is no param p because we are randomly selecting primes
 testInvariants = (t,d) -> (
     R = QQ[x_1..x_t];
-    dim = samplePrimes(d,#samplePrimes);
+    dimen = samplePrimes(d,#samplePrimes);
     --Need to generate a W still
-    A = diagonalAction(W,dim,R);
+    A = diagonalAction(W,dimen,R);
     print W;
     print invaraints A
 )
