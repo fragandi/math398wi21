@@ -85,8 +85,8 @@ public class DFS_Invariants
         return total;
     }
 
-    public static int d1 = 3, d2 = 9, numVars = 3;
-    public static int bound = 16;
+    public static int d1 = 13, d2 = 15, numVars = 3;
+    public static int bound = 200;
 
     public static ArrayList<Entry> invariants = new ArrayList<Entry>();
     public static int weights[][] = {{1,0,1},{0,1,2}};
@@ -145,6 +145,8 @@ public class DFS_Invariants
         int[] updateCoords = {0,0};
         updated.add(updateCoords);
         entries.add(start);
+
+        int currentDeg = 0;
         while (!updated.isEmpty())
         {
             int[] coords = updated.remove();
@@ -152,8 +154,15 @@ public class DFS_Invariants
 
             int firstNonzero = 0;
 
+            //System.out.println("Current: " + prev.toString());
+
             if (prev.getDegree() != 0)
             {
+                if (currentDeg < prev.getDegree())
+                {
+                    currentDeg = prev.getDegree();
+                    System.out.println("Current Degree: " + currentDeg);
+                }
                 int[] prevDegs = prev.getDegrees();
                 for (int i = 0; i < numVars; i++)
                 {
@@ -164,6 +173,7 @@ public class DFS_Invariants
                     }
                 }
             }
+            firstNonzero = 0;
             for (int i = firstNonzero; i < numVars; i++)
             {
                 int x = coords[0] + weights[0][i];
@@ -182,8 +192,11 @@ public class DFS_Invariants
                 if (newEntry.getDegree() < bound && (x != 0 || y != 0))
                 {
                     int newCoords[] = {x,y};
-                    updated.add(newCoords);
-                    entries.add(newEntry);
+                    if (!entries.contains(newEntry) && !invariants.contains(newEntry))
+                    {
+                        updated.add(newCoords);
+                        entries.add(newEntry);
+                    }
                 }
 
 
@@ -224,8 +237,6 @@ public class DFS_Invariants
         int startCoords[] = {0,0};
 
         //dfs(start, startCoords);
-        System.out.println();
-        invariants.clear();
         bfs();
 
 
