@@ -85,8 +85,8 @@ public class DFS_Invariants
         return total;
     }
 
-    public static int d1 = 13, d2 = 15, numVars = 3;
-    public static int bound = 200;
+    public static int d1 = 13, d2 = 17, numVars = 3;
+    public static int bound = d1*d2+1;
 
     public static ArrayList<Entry> invariants = new ArrayList<Entry>();
     public static int weights[][] = {{1,0,1},{0,1,2}};
