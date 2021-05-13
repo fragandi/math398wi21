@@ -1,3 +1,11 @@
+How to read this output:
+1st line: iteration of for loop, 1-100
+2nd line: number that we are modding Z by
+3rd line: time it took for invariant algorithm with m = min U to run
+4th line: time it took for invariant algorithm with m = U#0 to run
+5th line: difference in time (3rd line - 4th line)
+6th line: percent change (3rd - 4th)/3rd
+
 1
 36
 .787197
