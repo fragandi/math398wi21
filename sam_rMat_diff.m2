@@ -166,6 +166,7 @@ weightMatNM = (n,m,k) -> (L = for i from 1 to n list(for j from 1 to m list rand
 -- @param t the number of variables in the ring
 -- @param d the max a number p for Z_p could be
 randInvariants = (i,t,d) -> (
+    print i;
     R = QQ[x_1..x_t];
     dimen = {(random d)+1,(random d)+1};
     W = weightMatNM(2,t,i);
@@ -174,23 +175,29 @@ randInvariants = (i,t,d) -> (
     --print A;
     --print cyclicFactors A;
 
-    --b1 = benchmark "S1 = invariants A";
-    --b2 = benchmark "S2 = invariants2 A";
+    b1 = benchmark "S1 = invariants A";
+    b2 = benchmark "S2 = invariants2 A";
     S1 = invariants A;
     S2 = invariants2 A;
     S1 = sort S1;
     S2 = sort S2;
     if (S1 != S2) then print "DIFFERENT";
     --print S1;
-    --print b1;
+    print b1;
+    print b2;
+    print (b1-b2);
+    print ((b1-b2)*100/b1);
     --print S2;
     --print b2;
     --print invariants A
     )
-for n from 1 to 1000 do (
+
+--edit by Sam to randomize weight matrices and dimensions
+for n from 1 to 100 do (
     i = random 50;
-    --print n;
-    randInvariants(i+1,3,i+1);
+    print n;
+    randInvariants(i+3,3,i+3);
+    print "";
 );
 
 --Loads a list of primes, checks that it worked with a print
