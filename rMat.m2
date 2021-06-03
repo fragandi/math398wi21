@@ -12,6 +12,10 @@ needsPackage "InvariantRing"
 
 -- concat list by appending the second to the end of the last
 listAdd = (a,b) -> (m=0; i=#a; j=#b; for n from 0 to i+j-1 list if m==0 then a#n else b#(n-i) do if n+1-i>=0 then m=1)
+-- the built-in function join(List, List, List) accomplishes this better
+
+--
+
 
 -- find max because I don't want to import a function to do that for me
 maximum = (a,b) -> (if a>b then return a else return b)
