@@ -3,9 +3,9 @@ needsPackage "InvariantRing"
 --currently, this code only works with three variables (x_1, x_2, and x_3)
 R = QQ[x_1..x_3]
 W = matrix{{1,0,3},{0,5,1}}
-d = {17,17}
+--d = {17,17}
 --W = matrix{{1,0,1},{0,1,1}}
---d = {5,5}
+d = {3,9}
 print W
 T = diagonalAction(W, d, R)
 print T
@@ -18,22 +18,24 @@ S1 = sort S1
 
 print "\nMinimal generating set of monomials computed by InvariantRing: "
 print S1;
--- this line might need changed depending on the contents of S1.
--- In the 17, 17 example, the first element will generate all of the three-variable elements of the group and then we just have to add in the (x_i)^17 terms
--- However, in the {5,5} example that is commented out, the first element of S1 is x_3^5, which won't generate the three-variable elements.
--- The first three-variable element is actually S1#3
-m0 := S1#0
---m0 := S1#3
-
--- m' will be our "accumulator" that we constantly multiply by m0
-m' := m0
 
 -- there's two x_1's in this array to make it so that array indexing (which starts at 0) lines up with the variable indexing (which starts at 1)
 modVars := apply({x_1, x_1, x_2, x_3}, m -> sub(m, ring T) )
 
+-- this bit of code finds the first element of S1 that isn't a pure power, which will be a generator of the set
+i = 1
+while ((degree(modVars#1, S1#i) * degree(modVars#2, S1#i) == 0) and (degree(modVars#1, S1#i) * degree(modVars#3, S1#i) == 0) and (degree(modVars#2, S1#i) * degree(modVars#3, S1#i) == 0)) do ( i = i+1;);
+m0 := S1#i
+
+print "\nGenerator: "
+print m0;
+-- m' will be our "accumulator" that we constantly multiply by m0
+m' := m0
+
+
 -- sets the degree that each exponent will be modded by.
 -- this seems to work for Z/p x Z/p but I'm not sure about other groups.
-modDegree := d#0
+modDegree := lcm(d#0,d#1)
 
 -- M will be all of the elements in our group and N will include only minimal elements of M
 M := {}
@@ -84,7 +86,7 @@ while (i < #M) do (
         m2 = M#j;
 
         -- if m2 divides m1, then m1 is not minimal
-        if (degree(x_1, m1) > degree(x_1, m2) and degree(x_2, m1) > degree(x_2, m2) and degree(x_3, m1) > degree(x_3, m2)) then isMinimal = false;
+        if (degree(x_1, m1) >= degree(x_1, m2) and degree(x_2, m1) >= degree(x_2, m2) and degree(x_3, m1) >= degree(x_3, m2)) then isMinimal = false;
 
         j = j+1;
         );
