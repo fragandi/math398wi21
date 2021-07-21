@@ -60,15 +60,16 @@ randInvariants = (i,t,d) -> (
 load "testInv.m2"
 R= QQ[x_1..x_3]
 
---random weight matrix. Last argument is the cap on the weights, so I chose 4-1=3
---W0 = weightMatNM(2,3,3)
+d0 = 4
+--random weight matrix. Last argument is the cap on the randomized weights
+--W0 = weightMatNM(2,3,d0-1)
 
 --weight matrix from Dr. G's pdf example of a weight matrix that needs two generators.
 W0= matrix{{1,1,1},{1,3,1}};
 print "W0"
 print W0
 print (minors(2,W0))
-base0= {4,4};
+base0= {d0,d0};
 
 A0 = diagonalAction(W0,base0,R);
 (l0,h0)= testInv(R,W0,base0);
@@ -78,13 +79,13 @@ print (h0#(l0_0))
 print (invariants A0)
 
 
-
---random weight matrix, last argument is 16-1=15
---W1 = weightMatNM(2,3,15)
+d1 = 16
+--random weight matrix, last argument is cap on weights
+W1 = weightMatNM(2,3,d1-1)
 
 --weight matrix that has the true, false, true, false behavior in the net output (i.e. only coprime numbers)
 --but the minors of the matrix are not zero divisors of 16 and the program crashes when it tries to extract information from the hash table.
-W1 = matrix{{13,9,14}, {7,8,7}}
+--W1 = matrix{{13,9,14}, {7,8,7}}
 
 
 --misc. other tests
@@ -94,7 +95,7 @@ W1 = matrix{{13,9,14}, {7,8,7}}
 print "W1"
 print W1
 print (minors(2,W1))
-base1= {16,16};
+base1= {d1,d1};
 A1 = diagonalAction(W1,base1,R);
 (l1,h1)= testInv(R,W1,base1);
 
