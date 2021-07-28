@@ -1,4 +1,4 @@
-needsPackage "InvaraintRing"
+needsPackage "InvariantRing"
 
 --def method echo
 echo = method()
