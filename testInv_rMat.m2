@@ -68,7 +68,11 @@ d0 = 4
 W0= matrix{{1,1,1},{1,3,1}};
 print "W0"
 print W0
-print (minors(2,W0))
+print "Smith Normal Form"
+
+print (smithNormalForm(W0))
+print "Minors"
+print (gens (minors(2,W0)))
 base0= {d0,d0};
 
 A0 = diagonalAction(W0,base0,R);
@@ -81,7 +85,7 @@ print (invariants A0)
 
 d1 = 16
 --random weight matrix, last argument is cap on weights
-W1 = weightMatNM(2,3,d1-1)
+--W1 = weightMatNM(2,3,d1-1)
 
 --weight matrix that has the true, false, true, false behavior in the net output (i.e. only coprime numbers)
 --but the minors of the matrix are not zero divisors of 16 and the program crashes when it tries to extract information from the hash table.
@@ -90,13 +94,22 @@ W1 = weightMatNM(2,3,d1-1)
 
 --misc. other tests
 --W1 = matrix{{ 13,8,14}, {7,8,10}}
+W1 = matrix{{ 1,0,4}, {0,4,4}}
+print "Smith Normal Form"
+print (smithNormalForm(W1,ChangeMatrix=>{false,false}))
 --W1 = matrix{{ 2,0,2}, {0,2,2}}
 
 print "W1"
 print W1
+print "Minors"
 print (minors(2,W1))
 base1= {d1,d1};
 A1 = diagonalAction(W1,base1,R);
+
+I1 = invariants A1
+I1 = sort I1
+print "Invariants"
+print I1
 (l1,h1)= testInv(R,W1,base1);
 
 print (netList pack(4,l1))
